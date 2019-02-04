@@ -14,28 +14,29 @@ req.send(null);
 
 
 // TEST =================================================================================
-            // Tabela
-            var makeData = function(item) {
+function makeData(data) {
+    var test = JSON.parse(data);
+    var currencies = test.quotes;
+    console.log(currencies);
+
+    // Object.keys(currencies).forEach(function(key) {
+
+    //     console.log(key, currencies[key]);
+
+    // });
+
+    var output = `<table class="tabelkaWalut"><thead><tr><th>Waluta</th><th>Konwersja</th></tr></thead>`; 
+
+    Object.keys(currencies).forEach(function(key) {
+
+        output += "<tr><td>" + key + "</td>"; 
+        output += '<td>' + currencies[key] + '</td></tr>'; 
     
-                var data = JSON.parse(item);
-                var currencies = data.quotes;
-                // var currencies = data['quotes'];
-                // var output = `<table class="mainTable"><thead><tr><th>Currency</th><th>Value</th></tr></thead>`; 
+    });
 
-
-                Object.keys(currencies).forEach(function(key) {
-                    console.log(key, currencies[key]);
-
-                    // for(var i = 0; i < currencies.length; i++) {
-                    //     output += "<tr><td>" + key[i] + "</td>"; 
-                    //     output += '<td>' + currencies[key] + '</td></tr>'; 
-                    // }
-
-                    // output += "</table>"; 
-
-                    // document.getElementsByClassName('mainTable').innerHTML = output;
-                });
-              
-              }
+    output += "</table>"; 
+    document.querySelector('.content').innerHTML = output;
+    
+}
               
 // TEST =================================================================================
