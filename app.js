@@ -13,27 +13,6 @@ if (req.readyState == 4) {
 }
 };
 req.send(null);
-
-// ================================================================================================ TEST 1
-
-// function makeData(data) {
-//     var test = JSON.parse(data);
-//     var currencies = test.quotes;
-//     console.log(currencies);
-
-//     var output = `<table class="tabelkaWalut"><thead><tr><th>Waluta</th><th>Konwersja</th></tr></thead>`; 
-
-//     Object.keys(currencies).forEach(function(key) {
-
-//         output += "<tr><td>" + key + "</td>"; 
-//         output += '<td>' + currencies[key] + '</td></tr>'; 
-    
-//     });
-
-//     output += "</table>"; 
-//     document.querySelector('.content').innerHTML = output;
-    
-// }
     
 // ================================================================================================ TEST 2
 
@@ -50,25 +29,47 @@ function makeData(data) {
         var keyItem = String(key);
         var targetCurrency = keyItem.replace(/USD/g,"");
 
-        output += "<option data-value=" + currencies[key] +">" + targetCurrency + "</td>"; 
+        output += "<option data-currency=" + targetCurrency + " data-value=" + currencies[key] +">" + targetCurrency + "</td>"; 
     
     });
 
     output += "</select>"; 
     document.querySelector('.content').innerHTML = output;
-    
+
+    getSelectedValue();
 }
 
 function getSelectedValue() {
-    var selectedValue = document.getElementById("test").dataset.value;
-    console.log(selectedValue);
+    var currSelect = document.getElementById("test");
+
+    currSelect.onchange = function(event){
+        var value = event.target.options[event.target.selectedIndex].dataset.value;
+        var name = event.target.options[event.target.selectedIndex].dataset.currency;
+        
+        console.log("name: " + name);
+        console.log("value: " + value);
+    };
 }
 
-document.addEventListener("DOMContentLoaded", function(event) {
+// function getSelectedValue() {
+//     var selectedValue = document.getElementById("test").dataset.value;
+//     console.log(selectedValue);
+// }
 
-    console.log("DOM został wczytany");
-    console.log("Tutaj dopiero wyłapujemy elementy");
-    
-    var currSelect = document.getElementById("test");
-    currSelect.addEventListener("change",getSelectedValue);
-});
+// var currSelect = document.getElementById("test");
+// // currSelect.addEventListener("change",getSelectedValue);
+
+
+// currSelect.onchange = function(event){
+//     var value = event.target.options[event.target.selectedIndex].dataset.value;
+//     var name = event.target.options[event.target.selectedIndex].dataset.currency;
+//     console.log("value: " + value);
+//     console.log("name: " + name);
+//   };
+
+
+
+
+
+
+
