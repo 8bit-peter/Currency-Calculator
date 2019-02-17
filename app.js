@@ -42,13 +42,13 @@ function makeData(data) {
 function getSelectedValue() {
     var currSelect = document.getElementById("test");
 
-    currSelect.onchange = function(event){
+    currSelect.addEventListener("change", function(event) {
         var value = event.target.options[event.target.selectedIndex].dataset.value;
         var name = event.target.options[event.target.selectedIndex].dataset.currency;
         
         console.log("name: " + name);
         console.log("value: " + value);
-    };
+    })
 }
 
 // function getSelectedValue() {
