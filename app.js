@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if(req.status == 200)
         // console.log(req.response);
         //  var test = JSON.parse(req.response);
-         makeData(req.response);
-    
+        makeData(req.response);
+
         
         else
         console.log("Błąd podczas ładowania danych\n");
@@ -17,67 +17,79 @@ document.addEventListener("DOMContentLoaded", function(event) {
     req.send(null);
         
     // ================================================================================================ TEST 2
-    
+
     function makeData(data) {
         var test = JSON.parse(data);
         var currencies = test.quotes;
         // console.log(currencies);
-    
-    
-    
+
+
+
         var output = `<select class="selectCurrency test1">`; 
-    
+
         Object.keys(currencies).forEach(function(key) {
             var keyItem = String(key);
             // var targetCurrency = keyItem.replace(/USD/g,"");
             var targetCurrency = keyItem.substring(3,6);
-    
+
             output += "<option data-currency=" + targetCurrency + " data-value=" + currencies[key] +">" + targetCurrency + "</td>"; 
         
         });
-    
+
         output += "</select>"; 
         document.querySelector('.select1').innerHTML = output;
         document.querySelector('.select2').innerHTML = output;
-    
-        getSelectedValue();
+
+        // getSelectedValue();
     }
-    
-    function getSelectedValue() {
-        var currSelect = document.querySelector(".test1");
-        var btn = document.querySelector(".calculateBtn");
-    
-        currSelect.addEventListener("change", function(event) {
-            var value = event.target.options[event.target.selectedIndex].dataset.value;
-            var name = event.target.options[event.target.selectedIndex].dataset.currency;
-            
-            console.log("name: " + name);
-            console.log("value: " + value);
-        })
-    
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            console.log("no siemka")
-        })
-    }
-    
-    
-    })
-    
+
     // function getSelectedValue() {
-    //     var selectedValue = document.getElementById("test").dataset.value;
-    //     console.log(selectedValue);
+    //     var currSelect = document.querySelector(".test1");
+    //     
+
+    //     currSelect.addEventListener("change", function(event) {
+    //         var value = event.target.options[event.target.selectedIndex].dataset.value;
+    //         var name = event.target.options[event.target.selectedIndex].dataset.currency;
+            
+    //         console.log("name: " + name);
+    //         console.log("value: " + value);
+    //     })
+
+        
     // }
-    
-    // var currSelect = document.getElementById("test");
-    // // currSelect.addEventListener("change",getSelectedValue);
-    
-    
-    // currSelect.onchange = function(event){
-    //     var value = event.target.options[event.target.selectedIndex].dataset.value;
-    //     var name = event.target.options[event.target.selectedIndex].dataset.currency;
-    //     console.log("value: " + value);
-    //     console.log("name: " + name);
-    //   };
-    
-    
+
+    var btn = document.querySelector(".calculateBtn");
+
+    btn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        var value1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-value');
+        var curr1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-currency');
+
+        var value2 = document.querySelector(".select2").querySelector(':checked').getAttribute('data-value');
+        var curr2 = document.querySelector(".select2").querySelector(':checked').getAttribute('data-currency');
+        
+        var result = (1 / value1) * value2;
+
+        console.log(result);
+        console.log("Value 1 is: " + curr1, value1 + " and value 2: " + curr2, value2);
+    })
+
+})
+
+// function getSelectedValue() {
+//     var selectedValue = document.getElementById("test").dataset.value;
+//     console.log(selectedValue);
+// }
+
+// var currSelect = document.getElementById("test");
+// // currSelect.addEventListener("change",getSelectedValue);
+
+
+// currSelect.onchange = function(event){
+//     var value = event.target.options[event.target.selectedIndex].dataset.value;
+//     var name = event.target.options[event.target.selectedIndex].dataset.currency;
+//     console.log("value: " + value);
+//     console.log("name: " + name);
+//   };
+
