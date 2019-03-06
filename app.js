@@ -21,9 +21,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function makeData(data) {
         var test = JSON.parse(data);
         var currencies = test.quotes;
-        // console.log(currencies);
-
-
 
         var output = `<select class="selectCurrency test1">`; 
 
@@ -40,28 +37,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
         document.querySelector('.select1').innerHTML = output;
         document.querySelector('.select2').innerHTML = output;
 
-        // getSelectedValue();
     }
-
-    // function getSelectedValue() {
-    //     var currSelect = document.querySelector(".test1");
-    //     
-
-    //     currSelect.addEventListener("change", function(event) {
-    //         var value = event.target.options[event.target.selectedIndex].dataset.value;
-    //         var name = event.target.options[event.target.selectedIndex].dataset.currency;
-            
-    //         console.log("name: " + name);
-    //         console.log("value: " + value);
-    //     })
-
-        
-    // }
 
     var btn = document.querySelector(".calculateBtn");
 
     btn.addEventListener("click", function(e) {
         e.preventDefault();
+
+        var valueInput = document.querySelector(".userMoneyInput").value;
+        var valueOutput = document.querySelector(".output");
 
         var value1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-value');
         var curr1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-currency');
@@ -69,27 +53,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var value2 = document.querySelector(".select2").querySelector(':checked').getAttribute('data-value');
         var curr2 = document.querySelector(".select2").querySelector(':checked').getAttribute('data-currency');
         
-        var result = (1 / value1) * value2;
+        var result = (valueInput / value1) * value2;
 
+        valueOutput.innerText = "You have " + result.toFixed(2);
+
+        console.log(valueInput);
         console.log(result);
         console.log("Value 1 is: " + curr1, value1 + " and value 2: " + curr2, value2);
     })
 
 })
-
-// function getSelectedValue() {
-//     var selectedValue = document.getElementById("test").dataset.value;
-//     console.log(selectedValue);
-// }
-
-// var currSelect = document.getElementById("test");
-// // currSelect.addEventListener("change",getSelectedValue);
-
-
-// currSelect.onchange = function(event){
-//     var value = event.target.options[event.target.selectedIndex].dataset.value;
-//     var name = event.target.options[event.target.selectedIndex].dataset.currency;
-//     console.log("value: " + value);
-//     console.log("name: " + name);
-//   };
 
