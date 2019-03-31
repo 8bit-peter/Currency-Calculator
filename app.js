@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     };
     req.send(null);
         
-    // ================================================================================================ TEST 2
+    // ================================================================================================
 
     function makeData(data) {
-        var test = JSON.parse(data);
-        var currencies = test.quotes;
+        var dataG = JSON.parse(data);
+        var currencies = dataG.quotes;
 
-        var output = `<select class="selectCurrency test1">`; 
+        var output = `<select class="selectCurrency">`; 
 
         Object.keys(currencies).forEach(function(key) {
             var keyItem = String(key);
@@ -46,6 +46,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var valueInput = document.querySelector(".userMoneyInput").value;
         var valueOutput = document.querySelector(".output");
+        
+        valueOutput.classList.remove("visible");
+        console.log("removed");
 
         var value1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-value');
         var curr1 = document.querySelector(".select1").querySelector(':checked').getAttribute('data-currency');
@@ -56,10 +59,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var result = (valueInput / value1) * value2;
 
         valueOutput.innerText = "You have " + result.toFixed(2);
+        valueOutput.classList.add("visible");
+        console.log("added");
 
-        console.log(valueInput);
-        console.log(result);
-        console.log("Value 1 is: " + curr1, value1 + " and value 2: " + curr2, value2);
+        // console.log(valueInput);
+        // console.log(result);
+        // console.log("Value 1 is: " + curr1, value1 + " and value 2: " + curr2, value2);
     })
 
 })
