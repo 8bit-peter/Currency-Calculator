@@ -1,7 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     font-family: 'Fira Sans', sans-serif;
 }
 
@@ -22,9 +23,15 @@ global
     background: linear-gradient(45deg, #a50050 0%,#313b6f 100%);
     width: 100vw;
     height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 /* =====
@@ -42,20 +49,30 @@ calc box
     border-radius: 15px;
     padding: 40px;
     -webkit-box-shadow: 0 30px 92px rgba(32,47,123,.42);
-    -moz-box-shadow: 0 30px 92px rgba(32,47,123,.42);
     box-shadow: 0 30px 92px rgba(32,47,123,.42);
 }
 
 .container--calc {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    flex-flow: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column;
+            flex-flow: column;
 }
 
 .calcRow {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding: 10px 8px;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 /* =====
@@ -75,8 +92,13 @@ money input
 }
 
 .userMoney {
-    flex-direction: column;
-    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .inputMoneyTitle, .outputMoneyTitle, .output {
@@ -117,6 +139,8 @@ button
     line-height: 24px;
     color: #fff;
     padding: 10px 15px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     display: block;
     border: 1px solid #333;
@@ -126,6 +150,7 @@ button
 
 .cBtn:hover {
     background: #313b6f;
+    -webkit-transition: all .5s;
     transition: all .5s;
 }
 
@@ -145,13 +170,24 @@ result
     height: 3px;
     bottom: -3px;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     background: #313b6f;
     border-radius: 5px;
 }
 
 .output.visible::after {
-    animation: expand 1s normal forwards ease-in-out;
+    -webkit-animation: expand 1s normal forwards ease-in-out;
+            animation: expand 1s normal forwards ease-in-out;
+}
+
+@-webkit-keyframes expand {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 80%;
+    }
 }
 
 @keyframes expand {
